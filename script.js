@@ -5,13 +5,14 @@ var body = document.getElementById("gradient");
 var random_btn = document.querySelector(".random_btn")
 var first_load_rgb = [generateRGB(), generateRGB()]
 
-changeBackground(`linear-gradient(to right, rgb(${(first_load_rgb[0].toString())}), rgb(${(first_load_rgb[1].toString())}))`);
-displayColorText(`rgb (${(first_load_rgb[0].toString())}), rgb (${(first_load_rgb[1].toString())})`)
+changeBackground(`linear-gradient(to right, ${rgbToHex(first_load_rgb[0])}, ${rgbToHex(first_load_rgb[1])}`);
+displayColorText(`${rgbToHex(first_load_rgb[0])}, ${rgbToHex(first_load_rgb[1])}`)
+// displayColorText(`rgb (${(first_load_rgb[0].toString())}), rgb (${(first_load_rgb[1].toString())})`)
 setColorSelector(rgbToHex(first_load_rgb[0]), rgbToHex(first_load_rgb[1]))
 
 function displayColorText (value){
-	var linear = "linear-gradient(to right,"
-	return css.textContent = linear + value
+	var linear = "linear-gradient(to right, "
+	return css.textContent = linear + value + ")"
 }
 
 function setColorSelector (value1, valu2) {
@@ -49,7 +50,7 @@ function generateRGB () {
 function generateRandomColors () {
 	var rgb = [generateRGB(), generateRGB()]
 	changeBackground(`linear-gradient(to right, rgb(${(rgb[0].toString())}), rgb(${(rgb[1].toString())}))`);
-	displayColorText(`rgb (${(rgb[0].toString())}), rgb (${(rgb[1].toString())})`)
+  displayColorText(`${rgbToHex(rgb[0])}, ${rgbToHex(rgb[1])}`)
 	setColorSelector(rgbToHex(rgb[0]), rgbToHex(rgb[1]))
 }
 
@@ -57,14 +58,13 @@ function setGradient(e) {
 	if(e.target.classList.contains("color1")){
 			 color1.value = e.target.value
 		   changeBackground(`linear-gradient(to right, ${color1.value}, ${color2.value})`)
-			 displayColorText(`linear-gradient(to right, ${color1.value}, ${color2.value})`);
+			 displayColorText(`${color1.value}, ${color2.value}`);
 	}
 
 	if(e.target.classList.contains("color2")){
 		  color2.value = e.target.value
 			changeBackground(`linear-gradient(to right, ${color1.value}, ${color2.value})`)
-			displayColorText(`linear-gradient(to right, ${color1.value}, ${color2.value})`);
-
+			 displayColorText(`${color1.value}, ${color2.value}`);
 	}
 
 }
